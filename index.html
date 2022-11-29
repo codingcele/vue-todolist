@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app" class="container">
+        <div class="logo">
+            <img :src="logoImage" alt="">
+        </div>
+
+        <div class="new-task">
+            <input type="text" placeholder="Nuova task" v-model="newTask" @KeyUp.enter="addTask">
+            <button @click="addTask">Aggiungi</button>
+            <div class="error" v-if="error">
+                <small style="color: red">Devi inserire una task di almeno 5 caratteri</small>
+            </div>
+        </div>
+
+        <div class="tasks-container">
+            <ul v-if="tasks.length > 0">
+                <li class="task" v-for="(task, indice) in tasks">
+                    {{ task.text }}
+                    <i class="fas fa-times" @click="deleteTask(indice)"></i>
+                </li>
+            </ul>
+            <h2 v-else>Non ci sono tasks!</h2>
+        </div>
+    </div>
+
+
+
+
+
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="main.js"></script>
+</body>
+</html>
